@@ -21,14 +21,14 @@ const MenuItem = ({ title, url, image }: MenuItemProps) => {
       <div
         className={`${
           isActive ? "border-red-light" : "border-white/60"
-        } relative bg-violet h-[198px] w-[138px] rounded-[20px] border-4 group-hover:border-white transition-colors`}
+        } relative mb-2.5 bg-violet h-[198px] w-[138px] rounded-[20px] border-4 group-hover:border-white transition-colors`}
       >
         <Image src={image} fill alt="" priority />
       </div>
       <div
         className={`${
           isActive ? "bg-red text-white" : "bg-white text-red"
-        } mt-2.5 p-2.5 font-medium text-xs text-center tracking-[0.15em] rounded-[10px] uppercase group-hover:bg-red-light transition-colors`}
+        } btn p-2.5 text-xs group-hover:bg-red-light`}
       >
         {title}
       </div>

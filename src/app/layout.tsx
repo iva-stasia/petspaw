@@ -16,10 +16,10 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang="en">
       <body className={`${jost.variable} font-sans`}>
-        <div className="p-[30px] flex gap-5 justify-between h-full items-stretch">
+        <div className="p-[30px] flex gap-5 justify-between h-full items-stretch selection:bg-red-light">
           <div className="flex-1 flex flex-col items-center">
             <div>
-              <div className="mb-20">
+              <div className="mb-20 max-w-max">
                 <Link href="/">
                   <Image
                     src="/logo.svg"
