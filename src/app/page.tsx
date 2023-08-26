@@ -11,6 +11,7 @@ const Home = () => {
           src="/girl-and-pet.png"
           fill
           alt="Girl with pet"
+          sizes="(max-width: 768px) 100%, 100%"
           priority
           className="object-cover object-left"
         />
