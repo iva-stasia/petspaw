@@ -32,7 +32,7 @@ const Carousel = ({ cats }: CarouselProps) => {
           </div>
         ))}
       </div>
-      <div className="absolute flex gap-[5px] z-30 flex p-2.5 rounded-[20px] bg-white -translate-x-1/2 translate-y-1/2 bottom-0 left-1/2 transition-colors">
+      <div className="absolute flex gap-[5px] z-30 p-2.5 rounded-[20px] bg-white -translate-x-1/2 translate-y-1/2 bottom-0 left-1/2 transition-colors">
         {cats.map(({ id }, index) => (
           <button
             key={id}

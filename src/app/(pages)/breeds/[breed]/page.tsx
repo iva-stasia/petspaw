@@ -2,9 +2,12 @@
 
 import BackNav from "@src/components/BackNav";
 import useCats from "@src/hooks/useCats";
-import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
 import React from "react";
 import Carousel from "./Carousel";
+
+interface Params {
+  params: { breed: string };
+}
 
 const Breed = ({ params }: Params) => {
   const { cats, loading } = useCats(params.breed);
