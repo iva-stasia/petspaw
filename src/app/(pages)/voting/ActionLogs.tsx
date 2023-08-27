@@ -33,9 +33,11 @@ const ActionLogs = ({ action }: ActionLogsProps) => {
     !!actions.length && (
       <div className="overflow-y-auto flex-1 flex flex-col gap-2.5">
         {actions.map(({ type, date, imgId }, index) => {
+          const hours =
+            date.getHours() > 9 ? date.getHours() : "0" + date.getHours();
           const minutes =
             date.getMinutes() > 9 ? date.getMinutes() : "0" + date.getMinutes();
-          const time = `${date.getHours()}:${minutes}`;
+          const time = `${hours}:${minutes}`;
 
           return (
             <div

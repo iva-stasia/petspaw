@@ -24,10 +24,12 @@ const Voting = () => {
 
   return (
     <div className="h-full flex flex-col">
-      <BackNav pageTitle="voting" />
+      <div className="mb-5">
+        <BackNav pageTitle="voting" />
+      </div>
       <div className="relative mb-14">
         {loading ? (
-          <div className="h-[360px] flex justify-center items-center rounded-[20px] bg-grey animate-pulse">
+          <div className="aspect-[1.8] flex justify-center items-center rounded-[20px] bg-grey animate-pulse">
             <div className="flex space-x-2 animate-pulse">
               <div className="w-3 h-3 bg-white rounded-full"></div>
               <div className="w-3 h-3 bg-white rounded-full"></div>
@@ -37,7 +39,7 @@ const Voting = () => {
         ) : (
           cat && (
             <div>
-              <div className="relative overflow-hidden h-[360px] rounded-[20px]">
+              <div className="relative overflow-hidden aspect-[1.8] rounded-[20px]">
                 <Image
                   src={cat.url}
                   fill
