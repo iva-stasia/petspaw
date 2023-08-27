@@ -30,3 +30,7 @@ input[type="search"]::-webkit-search-results-decoration {
 .btn {
   @apply font-medium text-center tracking-[0.15em] rounded-[10px] uppercase transition-colors;
 }
+
+.select_base {
+  @apply py-2 pl-2.5 pr-8 w-full text-grey bg-grey-light rounded-[10px] appearance-none border-2 border-grey-light hover:border-red-light hover:cursor-pointer transition-colors;
+}
