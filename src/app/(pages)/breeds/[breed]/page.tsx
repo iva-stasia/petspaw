@@ -4,6 +4,7 @@ import BackNav from "@src/components/BackNav";
 import useCats from "@src/hooks/useCats";
 import React from "react";
 import Carousel from "./Carousel";
+import Loader from "@src/components/Loader";
 
 interface Params {
   params: { breed: string };
@@ -14,8 +15,9 @@ const Breed = ({ params }: Params) => {
 
   const breedData = loading ? "" : cats[0].breeds[0];
 
-  return (
-    !loading &&
+  return loading ? (
+    <Loader />
+  ) : (
     breedData && (
       <div className="h-full overflow-hidden flex flex-col">
         <div className="mb-5 flex gap-2.5">

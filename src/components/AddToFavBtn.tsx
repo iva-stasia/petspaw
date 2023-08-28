@@ -4,38 +4,41 @@ import removeFromFav from "@src/utils/removeFromFav";
 import addToFav from "@src/utils/addToFav";
 import { TEMP_USER_ID } from "@src/utils/constants";
 import useFavourites from "@src/hooks/useFavourites";
+import { Action, ActionType } from "@src/app/(pages)/voting/page";
 
 interface AddToFavBtnProps {
   imgId: string;
+  setAction?: (action: Action) => void;
 }
 
-const AddToFavBtn = ({ imgId }: AddToFavBtnProps) => {
+const AddToFavBtn = ({ imgId, setAction }: AddToFavBtnProps) => {
   const [favRequest, setFavRequest] = useState("");
   const { favs } = useFavourites(TEMP_USER_ID, favRequest);
 
   const [fav] = favs.filter(({ image }) => image.id === imgId);
   const favId = fav ? fav.id : null;
 
-  // const hahdleClick = (type: ActionType) => {
-  //   const date = new Date();
+  const hahdleClick = (type: ActionType) => {
+    if (!setAction) return;
+    const date = new Date();
 
-  //   const action: Action = {
-  //     type,
-  //     date,
-  //     imgId,
-  //   };
+    const action: Action = {
+      type,
+      date,
+      imgId,
+    };
 
-  //   setAction(action);
-  // };
+    setAction(action);
+  };
 
   const handleAddToFav = async () => {
     try {
       if (favId) {
         await removeFromFav(favId);
-        // hahdleClick("FavRemove");
+        hahdleClick("FavRemove");
       } else {
         await addToFav(imgId, TEMP_USER_ID);
-        // hahdleClick("FavAdd");
+        hahdleClick("FavAdd");
       }
 
       setFavRequest(crypto.randomUUID());

@@ -1,6 +1,6 @@
 import Icon from "@src/components/Icon";
 import { useEffect, useState } from "react";
-import { Action } from "./page";
+import { Action } from "../app/(pages)/voting/page";
 
 interface ActionLogsProps {
   action: Action | null;

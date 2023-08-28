@@ -8,7 +8,7 @@ interface LinkToBreedPageProps {
 const LinkToBreedPage = ({ id, name }: LinkToBreedPageProps) => {
   return (
     <Link
-      href={`breeds/${id}`}
+      href={`/breeds/${id}`}
       className="absolute h-full w-full bg-red/60 cursor-pointer z-10 opacity-0 hover:opacity-100 transition-all"
     >
       <div className="h-full p-2.5 flex items-end">

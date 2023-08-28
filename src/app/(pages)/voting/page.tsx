@@ -2,10 +2,11 @@
 
 import BackNav from "@src/components/BackNav";
 import useRandomCat from "@src/hooks/useRandomCat";
-import ActionLogs from "./ActionLogs";
+import ActionLogs from "../../../components/ActionLogs";
 import { useState } from "react";
 import Image from "next/image";
 import BtnGroup from "./BtnGroup";
+import Loader from "@src/components/Loader";
 
 export type ActionType = "Likes" | "Dislikes" | "FavAdd" | "FavRemove";
 
@@ -29,13 +30,7 @@ const Voting = () => {
       </div>
       <div className="relative mb-14">
         {loading ? (
-          <div className="aspect-[1.8] flex justify-center items-center rounded-[20px] bg-grey animate-pulse">
-            <div className="flex space-x-2 animate-pulse">
-              <div className="w-3 h-3 bg-white rounded-full"></div>
-              <div className="w-3 h-3 bg-white rounded-full"></div>
-              <div className="w-3 h-3 bg-white rounded-full"></div>
-            </div>
-          </div>
+          <Loader />
         ) : (
           cat && (
             <div>

@@ -18,10 +18,12 @@ const Carousel = ({ cats }: CarouselProps) => {
     return () => clearInterval(interval);
   }, []);
 
+  const limitedCats = cats.slice(0, 5);
+
   return (
     <div className="relative w-full mb-14 aspect-[1.8]" data-carousel="slide">
       <div className="relative overflow-hidden rounded-[20px] h-full">
-        {cats.map(({ id, url }, index) => (
+        {limitedCats.map(({ id, url }, index) => (
           <div
             key={id}
             className={`${
@@ -33,7 +35,7 @@ const Carousel = ({ cats }: CarouselProps) => {
         ))}
       </div>
       <div className="absolute flex gap-[5px] z-30 p-2.5 rounded-[20px] bg-white -translate-x-1/2 translate-y-1/2 bottom-0 left-1/2 transition-colors">
-        {cats.map(({ id }, index) => (
+        {limitedCats.map(({ id }, index) => (
           <button
             key={id}
             type="button"

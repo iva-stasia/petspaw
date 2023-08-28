@@ -36,7 +36,7 @@ const useCats = (breed?: string) => {
       try {
         if (breed) {
           const data = await catApi(
-            `images/search?limit=5&breed_ids=${breed}`
+            `images/search?limit=20&breed_ids=${breed}`
           ).json<CatData[]>();
 
           setCats(data);

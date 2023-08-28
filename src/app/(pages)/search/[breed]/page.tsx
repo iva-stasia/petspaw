@@ -1,37 +1,38 @@
 "use client";
 
-import ActionLogs from "@src/components/ActionLogs";
-import AddToFavBtn from "@src/components/AddToFavBtn";
 import BackNav from "@src/components/BackNav";
 import Loader from "@src/components/Loader";
-import useFavourites from "@src/hooks/useFavourites";
+import useCats from "@src/hooks/useCats";
 import compareIndexDigit from "@src/utils/compareIndexDigit";
-import { TEMP_USER_ID } from "@src/utils/constants";
 import Image from "next/image";
-import { useState } from "react";
-import { Action } from "../voting/page";
+import Link from "next/link";
 
-const Favourites = () => {
-  const { favs, loading, error } = useFavourites(TEMP_USER_ID, "");
-  const [action, setAction] = useState<Action | null>(null);
+interface Params {
+  params: { breed: string };
+}
 
-  if (error) throw new Error("Failed to fetch data");
+const BreedSearch = ({ params }: Params) => {
+  const { cats, loading } = useCats(params.breed);
 
   return (
-    <div>
+    <div className="overflow-hidden flex flex-col">
       <div className="mb-5">
-        <BackNav pageTitle="favourites" />
+        <BackNav pageTitle="search" />
       </div>
-      <div className="mb-10 grid grid-cols-3 auto-rows-[1fr] gap-5">
+      <div className="overflow-auto flex-1 grid grid-cols-3 auto-rows-[1fr] gap-5">
         {loading ? (
           <Loader />
         ) : (
-          !!favs.length &&
-          favs.map(({ id, image }, index) => {
+          !!cats.length &&
+          cats.map(({ id, url, breeds }, index) => {
             const isLastIndexDigit1 = compareIndexDigit(index, 1);
             const isLastIndexDigit4 = compareIndexDigit(index, 4);
             const isLastIndexDigit8 = compareIndexDigit(index, 8);
             const isLastIndexDigit9 = compareIndexDigit(index, 9);
+
+            const breedName =
+              breeds[0].name.slice(0, 1).toLocaleUpperCase() +
+              breeds[0].name.slice(1);
 
             return (
               <div
@@ -43,11 +44,11 @@ const Favourites = () => {
                     ? "row-span-2 col-span-2 "
                     : ""
                 }${
-                  favs.length === 1 ? "aspect-[0.67] " : ""
+                  cats.length === 1 ? "aspect-[0.67] " : ""
                 } relative rounded-[20px] overflow-hidden`}
               >
                 <Image
-                  src={image.url}
+                  src={url}
                   fill
                   alt="Cat photo"
                   sizes="(max-width: 768px) 100%, 100%"
@@ -55,8 +56,13 @@ const Favourites = () => {
                   className="object-cover"
                 />
                 <div className="absolute h-full w-full bg-red/60 z-10 opacity-0 hover:opacity-100 transition-all">
-                  <div className="h-full flex items-center justify-center">
-                    <AddToFavBtn imgId={image.id} setAction={setAction} />
+                  <div className="h-full p-2.5 flex items-end">
+                    <Link
+                      href={`/breeds/${breeds[0].id}`}
+                      className="py-[5px] px-2.5 w-full text-center text-red bg-white rounded-[10px]"
+                    >
+                      {breedName}
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -64,9 +70,8 @@ const Favourites = () => {
           })
         )}
       </div>
-      <ActionLogs action={action} />
     </div>
   );
 };
 
-export default Favourites;
+export default BreedSearch;

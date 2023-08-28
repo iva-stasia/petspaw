@@ -15,7 +15,7 @@ const SortBtn = ({ icon }: SortBtnProps) => {
   const router = useRouter();
 
   const handleSort = () => {
-    setOrder(icon === "sort-revert" ? "desc" : "asc");
+    setOrder(icon === "sort-revert" ? "asc" : "desc");
 
     if (!order) return;
 

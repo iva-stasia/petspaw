@@ -1,7 +1,13 @@
-import React from "react";
+import BackNav from "@src/components/BackNav";
 
 const Likes = () => {
-  return <div>Likes</div>;
+  return (
+    <div>
+      <div className="mb-5">
+        <BackNav pageTitle="likes" />
+      </div>
+    </div>
+  );
 };
 
 export default Likes;

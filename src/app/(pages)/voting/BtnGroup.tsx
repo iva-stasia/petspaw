@@ -70,7 +70,7 @@ const BtnGroup = ({ imgId, setAction, setRequest }: BtnGroupProps) => {
         onClick={() => handleAddToFav()}
         className="w-20 h-20 text-white bg-red hover:text-red hover:bg-red/30 transition-all"
       >
-        <Icon icon="fav" size={30} />
+        <Icon icon={favId ? "fav-color" : "fav"} size={30} />
       </button>
       <button
         onClick={() => handleVote(-1)}
