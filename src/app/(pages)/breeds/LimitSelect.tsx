@@ -1,8 +1,7 @@
 import SelectBase from "@src/components/SelectBase";
+import { LIMIT_OPTIONS } from "@src/utils/constants";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
-
-const limitOptions = ["5", "10", "15", "20"];
 
 const LimitSelect = () => {
   const [limit, setLimit] = useState("10");
@@ -28,9 +27,9 @@ const LimitSelect = () => {
         id="breeds-select"
         onChange={(e) => setLimit(e.target.value)}
         value={limit}
-        className="select_base"
+        className="select_base text-grey bg-grey-light"
       >
-        {limitOptions.map((option) => (
+        {LIMIT_OPTIONS.map((option) => (
           <option key={option} value={option}>
             Limit: {option}
           </option>

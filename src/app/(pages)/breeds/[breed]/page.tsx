@@ -36,7 +36,9 @@ const Breed = ({ params }: Params) => {
               </p>
               <div className="grid grid-cols-2 grid-rows-3 gap-x-5 gap-y-2.5 text-grey">
                 <p className="row-span-3">
-                  <p className="font-medium text-black">Temperament:</p>{" "}
+                  <span className="block font-medium text-black">
+                    Temperament:
+                  </span>{" "}
                   {breedData.temperament}
                 </p>
                 <p>

@@ -32,5 +32,9 @@ input[type="search"]::-webkit-search-results-decoration {
 }
 
 .select_base {
-  @apply py-2 pl-2.5 pr-8 w-full text-grey bg-grey-light rounded-[10px] appearance-none border-2 border-grey-light hover:border-red-light hover:cursor-pointer transition-colors;
+  @apply py-2 pl-2.5 pr-8 w-full rounded-[10px] appearance-none border-2 border-grey-light hover:border-red-light hover:cursor-pointer transition-colors;
+}
+
+.select_label {
+  @apply px-2.5 uppercase text-grey text-[10px];
 }

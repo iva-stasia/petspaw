@@ -6,7 +6,7 @@ interface SortBtnProps {
   icon: string;
 }
 
-type Order = "asc" | "desc";
+export type Order = "asc" | "desc" | "rand";
 
 const SortBtn = ({ icon }: SortBtnProps) => {
   const [order, setOrder] = useState<Order>("asc");

@@ -3,6 +3,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useMemo } from "react";
+import AddToFavBtn from "./AddToFavBtn";
+
+interface CatGridProps {
+  page: string;
+}
 
 const compareIndexDigit = (index: number, digit: number) => {
   const lastIndexDigit = Number(index.toString().slice(-1));
@@ -22,23 +27,20 @@ const comparator = (cat1: CatData, cat2: CatData) => {
   return a.localeCompare(b);
 };
 
-const CatGrid = () => {
+const CatGrid = ({ page }: CatGridProps) => {
   const { cats, loading, error } = useCats();
   const searchParams = useSearchParams();
 
   if (error) throw new Error("Failed to fetch data");
 
-  const limit = Number(searchParams.get("limit"));
   const order = searchParams.get("sort");
-
-  const limitedCats = limit ? cats.slice(0, limit) : cats;
 
   const sortedCats = useMemo(() => {
     if (order) {
-      return sortCats(limitedCats, order);
+      return sortCats(cats, order);
     }
-    return limitedCats;
-  }, [order, limitedCats]);
+    return cats;
+  }, [order, cats]);
 
   return (
     <div className="grid grid-cols-3 auto-rows-[1fr] gap-5">
@@ -74,16 +76,25 @@ const CatGrid = () => {
                   priority
                   className="object-cover"
                 />
-                <Link
-                  href={`breeds/${breeds[0].id}`}
-                  className="absolute h-full w-full bg-red/60 cursor-pointer z-10 opacity-0 hover:opacity-100 transition-all"
-                >
-                  <div className="h-full p-2.5 flex items-end">
-                    <div className="py-[5px] px-2.5 w-full text-center text-red bg-white rounded-[10px]">
-                      {breedName}
+                {page === "breeds" && (
+                  <div className="absolute h-full w-full bg-red/60 z-10 opacity-0 hover:opacity-100 transition-all">
+                    <div className="h-full p-2.5 flex items-end">
+                      <Link
+                        href={`breeds/${breeds[0].id}`}
+                        className="py-[5px] px-2.5 w-full text-center text-red bg-white rounded-[10px]"
+                      >
+                        {breedName}
+                      </Link>
                     </div>
                   </div>
-                </Link>
+                )}
+                {page === "gallery" && (
+                  <div className="absolute h-full w-full bg-red/60 z-10 opacity-0 hover:opacity-100 transition-all">
+                    <div className="h-full flex items-center justify-center">
+                      <AddToFavBtn imgId={id} />
+                    </div>
+                  </div>
+                )}
               </div>
             );
           })}
