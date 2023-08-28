@@ -1,22 +1,23 @@
 import SelectBase from "@src/components/SelectBase";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
+import { useEffect } from "react";
 
-const TypeSelect = () => {
-  const [type, setType] = useState("static");
-  const currentRoute = usePathname();
+interface TypeSelectProps {
+  type: string;
+  setType: (breed: string) => void;
+}
+
+const TypeSelect = ({ type, setType }: TypeSelectProps) => {
   const searchParams = useSearchParams();
-  const router = useRouter();
 
   useEffect(() => {
-    const current = new URLSearchParams(Array.from(searchParams.entries()));
-    current.set("type", type);
-
-    const search = current.toString();
-    const query = search ? `?${search}` : "";
-
-    router.push(`${currentRoute}${query}`);
-  }, [type, currentRoute, searchParams, router]);
+    const type = searchParams.get("type");
+    if (type) {
+      setType(type);
+    } else {
+      setType("All");
+    }
+  }, [searchParams, setType]);
 
   return (
     <div>

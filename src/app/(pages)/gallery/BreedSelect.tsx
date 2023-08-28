@@ -1,30 +1,27 @@
 import SelectBase from "@src/components/SelectBase";
 import useBreeds from "@src/hooks/useBreeds";
-import { usePathname, useSearchParams } from "next/navigation";
-import { useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
+import { useEffect } from "react";
 
-const BreedSelect = () => {
-  const [breed, setBreed] = useState("All breeds");
+interface BreedSelectProps {
+  breed: string;
+  setBreed: (breed: string) => void;
+}
+
+const BreedSelect = ({ breed, setBreed }: BreedSelectProps) => {
   const { breeds } = useBreeds();
-  const currentRoute = usePathname();
   const searchParams = useSearchParams();
-  const router = useRouter();
 
   useEffect(() => {
-    const current = new URLSearchParams(Array.from(searchParams.entries()));
+    const breedQ = searchParams.get("breed_ids");
+    console.log(breedQ);
 
-    if (breed === "All breeds") {
-      current.delete("breed_ids");
+    if (breedQ) {
+      setBreed(breedQ);
     } else {
-      current.set("breed_ids", breed);
+      setBreed("All breeds");
     }
-
-    const search = current.toString();
-    const query = search ? `?${search}` : "";
-
-    router.push(`${currentRoute}${query}`);
-  }, [breed, currentRoute, searchParams, router]);
+  }, [searchParams, setBreed]);
 
   return (
     <div>

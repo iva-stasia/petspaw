@@ -8,12 +8,12 @@ const links = [
   },
   {
     title: "Breeds",
-    url: "/breeds",
+    url: "/breeds?limit=10",
     image: "/pet-breeds.svg",
   },
   {
     title: "Gallery",
-    url: "/gallery",
+    url: "/gallery?limit=5",
     image: "/images-search.svg",
   },
 ];

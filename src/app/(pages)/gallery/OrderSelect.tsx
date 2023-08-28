@@ -1,23 +1,23 @@
 import SelectBase from "@src/components/SelectBase";
-import { useEffect, useState } from "react";
-import { usePathname, useSearchParams } from "next/navigation";
-import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 
-const OrderSelect = () => {
-  const [order, setOrder] = useState("rand");
-  const currentRoute = usePathname();
+interface OrderSelectProps {
+  order: string;
+  setOrder: (breed: string) => void;
+}
+
+const OrderSelect = ({ order, setOrder }: OrderSelectProps) => {
   const searchParams = useSearchParams();
-  const router = useRouter();
 
   useEffect(() => {
-    const current = new URLSearchParams(Array.from(searchParams.entries()));
-    current.set("sort", order);
-
-    const search = current.toString();
-    const query = search ? `?${search}` : "";
-
-    router.push(`${currentRoute}${query}`);
-  }, [order, currentRoute, searchParams, router]);
+    const sort = searchParams.get("sort");
+    if (sort) {
+      setOrder(sort);
+    } else {
+      setOrder("rand");
+    }
+  }, [searchParams, setOrder]);
 
   return (
     <div>

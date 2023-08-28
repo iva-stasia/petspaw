@@ -1,25 +1,22 @@
 import SelectBase from "@src/components/SelectBase";
 import { LIMIT_OPTIONS } from "@src/utils/constants";
-import { usePathname, useSearchParams } from "next/navigation";
-import { useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
+import { useEffect } from "react";
 
-const LimitSelect = () => {
-  const [limit, setLimit] = useState("5");
-  const currentRoute = usePathname();
+interface LimitSelectProps {
+  limit: string;
+  setLimit: (breed: string) => void;
+}
+
+const LimitSelect = ({ limit, setLimit }: LimitSelectProps) => {
   const searchParams = useSearchParams();
-  const router = useRouter();
 
   useEffect(() => {
-    const current = new URLSearchParams(Array.from(searchParams.entries()));
-
-    current.set("limit", limit);
-
-    const search = current.toString();
-    const query = search ? `?${search}` : "";
-
-    router.push(`${currentRoute}${query}`);
-  }, [limit, currentRoute, searchParams, router]);
+    const limitQ = searchParams.get("limit");
+    if (limitQ) {
+      setLimit(limitQ);
+    }
+  }, [searchParams, setLimit]);
 
   return (
     <div className="flex-1">
