@@ -51,6 +51,7 @@ const BtnGroup = ({ imgId, setAction, setRequest }: BtnGroupProps) => {
         await addToFav(imgId, TEMP_USER_ID);
         hahdleClick("FavAdd");
       }
+
       setFavRequest(crypto.randomUUID());
     } catch (error) {
       if (error instanceof Error) throw new Error(error.message);

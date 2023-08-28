@@ -18,21 +18,16 @@ const BreedSelect = () => {
     } else {
       current.set("breed_ids", breed);
     }
-
-    const search = current.toString();
-    const query = search ? `?${search}` : "";
-
-    router.push(`${currentRoute}${query}`);
   }, [breed, currentRoute, searchParams, router]);
 
   return (
     <SelectBase>
       <select
-        name="breeds"
-        id="breeds-select"
+        name="breed"
+        id="breed-select"
         onChange={(e) => setBreed(e.target.value)}
         value={breed}
-        className="select_base"
+        className="select_base text-grey bg-grey-light"
       >
         <option value="All breeds">All breeds</option>
         {breeds.map(({ name, id }) => (

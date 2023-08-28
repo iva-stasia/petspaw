@@ -13,7 +13,7 @@ const Breeds = () => {
         <Filters />
       </div>
       <div className="overflow-y-auto flex-1">
-        <CatGrid />
+        <CatGrid page="breeds" />
       </div>
     </div>
   );

@@ -25,9 +25,7 @@ const useCats = (breed?: string) => {
 
   const searchParams = useSearchParams();
   const current = new URLSearchParams(
-    Array.from(searchParams.entries()).filter(
-      (entry) => entry[0] !== "sort" && entry[0] !== "limit"
-    )
+    Array.from(searchParams.entries()).filter((entry) => entry[0] !== "sort")
   );
 
   const search = current.toString();
@@ -44,9 +42,10 @@ const useCats = (breed?: string) => {
           setCats(data);
           return;
         }
-        const data = await catApi(
-          `images/search?has_breeds=1&limit=20${query}`
-        ).json<CatData[]>();
+        const data = await catApi(`images/search?has_breeds=1&${query}`).json<
+          CatData[]
+        >();
+
         setCats(data);
       } catch (error) {
         if (error instanceof Error) setError(error.message);

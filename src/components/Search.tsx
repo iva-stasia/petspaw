@@ -14,7 +14,7 @@ const Search = () => {
           placeholder="Search for breeds by name"
           className="w-full py-[18px] pl-5 pr-[60px] rounded-[20px] placeholder:text-xl placeholder:text-grey border-2 border-white hover:border-red-light focus-visible:border-red transition-colors outline-none"
         />
-        <div className="absolute top-2.5 right-2.5 ">
+        <div className="absolute top-2.5 right-2.5 text-red bg-red-light hover:text-white hover:bg-red rounded-[10px]">
           <IconBtn icon="search" onClick={() => {}} />
         </div>
       </form>

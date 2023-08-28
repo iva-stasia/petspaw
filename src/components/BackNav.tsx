@@ -18,7 +18,9 @@ const BackNav = ({ pageTitle }: BackNavProps) => {
 
   return (
     <nav className="flex gap-2.5">
-      <IconBtn icon="back" onClick={() => router.back()} />
+      <div className="text-red bg-red-light hover:text-white hover:bg-red rounded-[10px]">
+        <IconBtn icon="back" onClick={() => router.back()} />
+      </div>
       <Link
         href={`/${pageTitle}`}
         className={`${
